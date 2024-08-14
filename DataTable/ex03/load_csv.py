@@ -1,7 +1,6 @@
 import pandas as pd
 import numpy as np
 
-
 def path_validitor(path: str, function: None):
     '''
     Checks if path contains csv extention
