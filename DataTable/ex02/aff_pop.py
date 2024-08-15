@@ -50,7 +50,7 @@ def aff_pop(country: str, ver_country:str):
 
 def main():
     try:
-        aff_pop('France', 'Monaco')
+        aff_pop('France', 'Morocco')
     except (Exception, OSError, FileNotFoundError) as err:
         print(err)
 
