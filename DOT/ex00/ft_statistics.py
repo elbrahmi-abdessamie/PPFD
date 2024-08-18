@@ -1,5 +1,6 @@
 
 class Data:
+    '''Stores data given as args'''
     def __init__(self, args:tuple=None):
         self.__args = args
 
@@ -9,6 +10,7 @@ class Data:
 
 
 class DataValidator:
+    '''class responsible for validating data'''
     @staticmethod
     def validator(data:Data):
         vals = data.get_data()
@@ -20,10 +22,12 @@ class DataValidator:
         return [arg for arg in vals]
 
 class Methods:
+    '''Methods class hold given kwargs as methods'''
     def __init__(self, args:dict=None):
         self.__args = args
     
     def get_methods(self):
+        '''Return stored methods'''
         if not self.__args:
             return None
         return self.__args
@@ -90,21 +94,23 @@ class StatisticTools:
             raise Exception('ERROR')
         print(f"var : {StatisticTools.calc_variance(data)}")
         
-class MethodsMaper:
+class MethodsFactory:
+    '''Statistics methods factory'''
+    methods = {
+        'mean': StatisticTools.mean,
+        'median': StatisticTools.median,
+        'quartile': StatisticTools.quartile,
+        'std': StatisticTools.std,
+        'var': StatisticTools.variance
+        }
 
-    @staticmethod    
+    @staticmethod  
     def mapper(methodArgs: Methods):
-        methods = {
-            'mean': StatisticTools.mean,
-            'median': StatisticTools.median,
-            'quartile': StatisticTools.quartile,
-            'std': StatisticTools.std,
-            'var': StatisticTools.variance
-            }
+        '''Map arguments methods to the existed method'''
         meth_args = methodArgs.get_methods()
         for key, val in meth_args.items():
-            if val in methods:
-                yield methods[val]
+            if val in MethodsFactory.methods:
+                yield MethodsFactory.methods[val]
 
 
 def ft_statistics(*args: any, **kwargs: any)-> None:
@@ -112,7 +118,7 @@ def ft_statistics(*args: any, **kwargs: any)-> None:
     if not kwargs:
         print('ERROR')
         return
-    tools = MethodsMaper.mapper(Methods(kwargs))
+    tools = MethodsFactory.mapper(Methods(kwargs))
     for tool in tools:
         try:
             tool(value)
@@ -131,8 +137,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-# StatisticTools.mean(([1,2,3]))
-
-
-# for dt in Methods({1:'lol', 2:'alo'}):
-#     print(dt)
