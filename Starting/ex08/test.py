@@ -25,14 +25,14 @@
 # choice = pick_amove(choice)
 # transform_max(transform[choice], string_to_process)
 
-def print_str(string):
-    print(string)
+# def print_str(string):
+#     print(string)
 
-def nobody(string):
-    string = string.upper()
-    def transform(func, string1):
-        return func(string1)
-    return transform
+# def nobody(string):
+#     string = string.upper()
+#     def transform(func, string1):
+#         return func(string1)
+#     return transform
 
-nobody('hello')(print_str, 'waaaa zebi')
+# nobody('hello')(print_str, 'waaaa zebi')
 
